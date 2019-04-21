@@ -130,6 +130,16 @@ class FrmHooksController {
         add_action( 'admin_menu', 'FrmStylesController::menu', 14 );
         add_action( 'admin_init', 'FrmStylesController::admin_init' );
 
+        // Statistic Controller
+        add_action( 'admin_menu', 'FrmStatisticsController::menu', 13 );
+        add_action( 'admin_head-toplevel_page_formidable', 'FrmStatisticsController::head' );
+//
+        add_filter( 'set-screen-option', 'FrmStatisticsController::save_per_page', 10, 3 );
+        add_action( 'admin_footer', 'FrmStatisticsController::insert_form_popup' );
+        add_action( 'media_buttons', 'FrmStatisticsController::insert_form_button' );
+        add_action( 'et_pb_admin_excluded_shortcodes', 'FrmStatisticsController::prevent_divi_conflict' );
+
+
         // XML Controller
         add_action( 'admin_menu', 'FrmXMLController::menu', 41 );
 
