@@ -156,11 +156,11 @@ class FrmStatisticsController
 
 
                         foreach ($entry_options as $option) {
-                            $selected_total = $wpdb->get_row("SELECT count(*) as count FROM " . $prefix . "frm_items fi LEFT JOIN " . $prefix . "frm_item_metas fim ON fi.id = fim.item_id WHERE fi.form_id = {$id} AND fim.field_id = {$field->id} AND meta_value = '{$option}'")->count;
+                            $selected_total = $wpdb->get_row("SELECT count(*) as count FROM " . $prefix . "frm_items fi LEFT JOIN " . $prefix . "frm_item_metas fim ON fi.id = fim.item_id WHERE fi.form_id = {$id} AND fim.field_id = {$field->id} AND meta_value = '{$option['label']}'")->count;
 
                             $percent = round(((float)$selected_total / (float)$total) * 100, 2);
                             $options[] = array(
-                                'label' => $option,
+                                'label' => $option['label'],
                                 'percent' => $percent
                             );
                         }
